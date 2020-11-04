@@ -1,5 +1,7 @@
 <template>
-    <div class="boton__cerrar__seccion"></div>
+    <div class="boton__cerrar__seccion">
+        <button>Cerrar Secciòn</button>
+    </div>
 </template>
 
 <script>

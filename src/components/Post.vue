@@ -1,11 +1,8 @@
 <template>
-    <div class="post">
-        <div class="post__formulario">
-            <form class="formulario">
-                <textarea v-model="post" placeholder="Publica tu historia"></textarea>
-                <button>Publicar</button>
-            </form>
-        </div>
+    <div class="postUser">
+        <ul v-for="(post, id) in postUser" :key="id">
+            <li>{{`${post.autor} ${post.mensaje} ${post.fecha}`}}</li>
+        </ul>
     </div>
 </template>
 
@@ -14,22 +11,23 @@ export default {
     name: 'Post',
     data() {
         return {
-            post: '',
+            postUser: []
         }
     },
-    // created() {
-    //     fetch('https://node-api-doctadevs.vercel.app/posts')
-    //         body = {
-    //             "autor": "USERNAME",
-    //             "mensaje": "MENSAJE"
-    //             }
-    //     .then(res => res.json())
-    //     .then(data => {
-    //     })
-    //     .catch(err => {
-    //         console.log(err)
-    //     })
-    // },
+    methods: {
+        postUser(){
+            fetch('https://node-api-doctadevs.vercel.app/users/{{USERNAME}}/posts')
+            .then(res => {
+                return res.json()
+            })
+            .then(data => {
+                this.postUser = data;
+            })
+            .catch(err => {
+                console.log(err)
+            })
+        }
+    },
 }
 </script>
 

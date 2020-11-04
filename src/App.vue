@@ -2,6 +2,7 @@
     <div class="container">
         <header-app></header-app>
         <home></home>
+        <feed></feed>
         <footer-app></footer-app>
     </div>
 </template>
@@ -10,13 +11,15 @@
 import HeaderApp from './components/HeaderApp'
 import FooterApp from './components/FooterApp'
 import Home from './views/Home'
+import Feed from './views/Feed'
 
 export default {
     name: 'App',
     components: {
         HeaderApp,
         FooterApp,
-        Home
+        Home,
+        Feed
     }
 }
 </script>
