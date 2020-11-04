@@ -19,6 +19,10 @@ export default {
     },
     // created() {
     //     fetch('https://node-api-doctadevs.vercel.app/posts')
+    //         body = {
+    //             "autor": "USERNAME",
+    //             "mensaje": "MENSAJE"
+    //             }
     //     .then(res => res.json())
     //     .then(data => {
     //     })

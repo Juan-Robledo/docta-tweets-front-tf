@@ -1,16 +1,16 @@
 <template>
     <div class="home">
-        <post></post>
+        <lista-posts></lista-posts>
     </div>
 </template>
 
 <script>
-import Post from '@/components/Post'
+import ListaPosts from '@/components/ListaPosts'
 
 export default {
     name: 'Home',
     components: {
-        Post
+        ListaPosts
     }
 }
 </script>
