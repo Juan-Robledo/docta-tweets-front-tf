@@ -1,14 +1,14 @@
 <template>
-    <div class="post" @load="mostrarPost">
+    <div class="post">
         <div class="post__title">
-            <h3>Autor {{post.autor}}</h3>
-            <span>November 05, 2020 08:10{{post.fecha}}</span>
+            <h3>{{autor}}</h3>
+            <span>{{fecha}}</span>
         </div>
         <div class="post__message">
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Porro nesciunt rem facere voluptatibus eum ipsa obcaecati, quis a? Deleniti facere sit cumque sequi distinctio porro autem maiores iusto animi? Totam.{{post.mensaje}}</p>
+            <p>{{mensaje}}</p>
         </div>
         <div class="post__button">
-            <boton-like></boton-like>
+            <boton-like>{{likes}}</boton-like>
             <boton-eliminar-post></boton-eliminar-post>
         </div>
         <!-- <p>{{`${post.mensaje} ${post.fecha} ${post.likes}`}}</p> -->
@@ -25,24 +25,15 @@ export default {
         BotonEliminarPost,
         BotonLike,
     },
+    props: {
+        autor: String,
+        fecha: String,
+        mensaje: String,
+        likes: Number
+    },
     data() {
         return {
-            post: []
-        }
-    },
-    methods: {
-        mostrarPost(){
-            fetch('https://node-api-doctadevs.vercel.app/posts',{})
-            .then(res => {
-                    return res.json()
-            })
-            .then(data => {
-                console.log(data)
-                this.post = data;
-            })
-            .catch(err => {
-                console.log(err)
-            })
+            post: {}
         }
     },
 }

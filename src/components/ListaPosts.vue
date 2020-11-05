@@ -1,7 +1,16 @@
 <template>
     <div class="lista__posts">
-        <post v-for="(post, id) in posts" :key="id">
-            <!-- <p>{{`${post.mensaje} ${post.fecha} ${post.likes}`}}</p> -->
+        <post v-for="(post, index) in posts" :key="index"
+        :autor='post.autor.username'
+        :fecha='post.fecha'
+        :mensaje='post.mensaje'
+        :likes='post.likes.length'>
+            <!-- <ul v-for="(post, index) in posts" :key="index">
+                <li>{{post.autor.username}}</li>
+                <li>{{post.mensaje}}</li>
+                <li>{{post.likes.length}}</li>
+                <li>{{post.fecha}}</li>
+            </ul> -->
         </post>
     </div>
 </template>
@@ -20,17 +29,13 @@ export default {
         }
     },
     created() {
-        fetch('https://node-api-doctadevs.vercel.app/posts',{})
-        .then(res => {
-                return res.json()
-        })
+        fetch('https://node-api-doctadevs.vercel.app/posts')
+        .then(response => response.json())
         .then(data => {
-            // console.log(data)
-            this.posts = data;
+            console.log(data.body)
+            this.posts = data.body;
         })
-        .catch(err => {
-            console.log(err)
-        })
+        .catch(err => console.log(err))
     },
 }
 </script>
