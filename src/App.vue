@@ -2,7 +2,7 @@
     <div class="container">
         <header-app></header-app>
         <home></home>
-        <feed></feed>
+        <!-- <feed></feed> -->
         <footer-app></footer-app>
     </div>
 </template>
@@ -11,7 +11,7 @@
 import HeaderApp from './components/HeaderApp'
 import FooterApp from './components/FooterApp'
 import Home from './views/Home'
-import Feed from './views/Feed'
+// import Feed from './views/Feed'
 
 export default {
     name: 'App',
@@ -19,7 +19,7 @@ export default {
         HeaderApp,
         FooterApp,
         Home,
-        Feed
+        // Feed
     }
 }
 </script>

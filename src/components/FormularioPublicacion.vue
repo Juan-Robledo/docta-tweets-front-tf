@@ -1,7 +1,8 @@
 <template>
     <div class="formulario__publicacion">
         <form class="formulario">
-            <textarea v-model="post" placeholder="Publica tu historia"></textarea>
+            <h5>Tweets</h5>
+            <textarea v-model="publish" placeholder="What's going on?"></textarea>
             <button>Publicar</button>
         </form>
     </div>
@@ -12,13 +13,16 @@ export default {
     name: 'FormularioPublicacion',
     data() {
         return {
-            post: '',
+            publish: '',
         }
     },
     created() {
         fetch('https://node-api-doctadevs.vercel.app/posts',
-        {
+            {
             methods: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
             body: {
                 "autor": "USERNAME",
                 "mensaje": "MENSAJE"
@@ -30,7 +34,7 @@ export default {
         })
         .then(data => {
             console.log(data)
-            // this.post = data;
+            this.publish = data;
         })
         .catch(err => {
             console.log(err)
