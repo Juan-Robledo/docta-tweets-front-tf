@@ -2,7 +2,7 @@
     <div class="formulario">
         <h2>Registrarse</h2>
         <form action="" class="formulario__usuario">
-            <input type="text" placeholder="Nombre" v-model="name">
+            <input type="text" placeholder="Nombre" v-model="nombre">
             <input type="text" placeholder="Username" v-model="username">
             <input type="text" placeholder="Password" v-model="password">
             <button @click.prevent="addUser">Registrarse</button>
@@ -15,11 +15,9 @@ export default {
     name: 'FormularioUsuario',
     data() {
         return {
-            // usuario: {
-                name: '',
-                username: '',
-                password: ''
-            // }
+            nombre: '',
+            username: '',
+            password: ''
         }
     },
     methods: {
@@ -27,11 +25,13 @@ export default {
             fetch('https://node-api-doctadevs.vercel.app/users',
             {
                 method: 'POST',
-                body: {
-                    "name": "NOMBRE",
-                    "username": "USERNAME",
-                    "password": "PASSWORD"
-                }
+                header: {'Content-Type':'application/json'},
+                body: JSON.stringify(this.nombre, this.username, this.password)
+                // {
+                //     "name": "this.nombre",
+                //     "username": "this.username",
+                //     "password": "this.password"
+                // }
             })
             .then(res => {
                 return res.json()
