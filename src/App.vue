@@ -1,7 +1,8 @@
 <template>
     <div class="container">
         <header-app></header-app>
-        <home></home>
+        <router-view></router-view>
+        <!-- <home></home> -->
         <!-- <feed></feed> -->
         <footer-app></footer-app>
     </div>
@@ -10,7 +11,7 @@
 <script>
 import HeaderApp from './components/HeaderApp'
 import FooterApp from './components/FooterApp'
-import Home from './views/Home'
+// import Home from './views/Home'
 // import Feed from './views/Feed'
 
 export default {
@@ -18,7 +19,7 @@ export default {
     components: {
         HeaderApp,
         FooterApp,
-        Home,
+        // Home,
         // Feed
     }
 }
