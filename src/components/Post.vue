@@ -10,6 +10,7 @@
         <div class="post__button">
             <boton-like :idPostUser="idPost"><span> {{likes}}</span></boton-like>
             <boton-eliminar-post :idPostUser='idPost'></boton-eliminar-post>
+            <boton-editar-posts :idPostUser='idPost'></boton-editar-posts>
         </div>
         <!-- <p>{{`${post.mensaje} ${post.fecha} ${post.likes}`}}</p> -->
     </div>
@@ -18,12 +19,14 @@
 <script>
 import BotonEliminarPost from './BotonEliminarPost'
 import BotonLike from './BotonLike'
+import BotonEditarPosts from './BotonEditarPosts'
 
 export default {
     name: 'Post',
     components: {
         BotonEliminarPost,
         BotonLike,
+        BotonEditarPosts
     },
     props: {
         autor: String,

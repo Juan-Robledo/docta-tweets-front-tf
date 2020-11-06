@@ -45,4 +45,7 @@ export default {
         font-size: 17px;
         color: #333333;
     }
+    button:hover{
+        color: #830000;
+    }
 </style>

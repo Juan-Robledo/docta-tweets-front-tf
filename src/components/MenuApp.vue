@@ -9,7 +9,7 @@
 import Home from '@/views/Home'
 import Feed from '@/views/Feed'
 export default {
-    name: 'Menu',
+    name: 'MenuApp',
     components: {
         Home,
         Feed

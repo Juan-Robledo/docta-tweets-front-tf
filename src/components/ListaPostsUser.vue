@@ -31,7 +31,7 @@ export default {
         fetch('https://node-api-doctadevs.vercel.app/users/USERNAME/posts')
         .then(res => res.json())
         .then(data => {
-            console.log(data.body)
+            // console.log(data.body)
             this.postUser = data.body;
         })
         .catch(err => console.log(err))
