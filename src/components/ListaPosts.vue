@@ -7,13 +7,6 @@
         :likes='post.likes.length'
         :idPost='post._id'>
         </post>
-            <!-- <ul v-for="(post, index) in posts" :key="index">
-                <li>{{post.autor.username}}</li>
-                <li>{{post.mensaje}}</li>
-                <li>{{post.likes.length}}</li>
-                <li>{{post.fecha}}</li>
-                <li>{{post._id}}</li>
-            </ul> -->
     </div>
 </template>
 

@@ -17,7 +17,6 @@ export default {
     },
     methods: {
         likePost(){
-            // let result = this.like;
             fetch(`https://node-api-doctadevs.vercel.app/posts/${this.idPostUser}/like`,
             {
                 method: 'POST'
@@ -34,16 +33,6 @@ export default {
             })
         }
     },
-    // created() {
-    //     fetch('https://node-api-doctadevs.vercel.app/posts/{{POST_ID}}/like')
-    //     .then(res => res.json())
-    //     .then(data => {
-
-    //     })
-    //     .catch(err => {
-    //         console.log(err)
-    //     })
-    // },
 }
 </script>
 

@@ -9,7 +9,7 @@
         </div>
         <div class="post__button">
             <boton-like :idPostUser="idPost"><span> {{likes}}</span></boton-like>
-            <boton-eliminar-post></boton-eliminar-post>
+            <boton-eliminar-post :idPostUser='idPost'></boton-eliminar-post>
         </div>
         <!-- <p>{{`${post.mensaje} ${post.fecha} ${post.likes}`}}</p> -->
     </div>
@@ -53,6 +53,7 @@ export default {
         border-radius: 15px;
         background-color: #999999ad;
         color: #fcfa79;
+        text-transform: lowercase;
     }
     .post__title{
         margin: 10px;

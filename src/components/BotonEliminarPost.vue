@@ -7,6 +7,9 @@
 <script>
 export default {
     name: 'BotonEliminarPost',
+    props: {
+        idPostUser: String
+    },
     data() {
         return {
             // deletePost = true,
@@ -14,7 +17,8 @@ export default {
     },
     methods: {
         removePost(){
-            fetch('https://node-api-doctadevs.vercel.app/posts/{{POST_ID}}', {
+            fetch(`https://node-api-doctadevs.vercel.app/posts/${this.idPostUser}`, {
+                method: 'DELETE',
                 body: {
                     "autor": "USERNAME"
                     }
@@ -23,26 +27,14 @@ export default {
                 return res.json()
                 })
             .then(data => {
-                this.deletePost = data;
+                console.log(data)
+                // this.deletePost = data;
             })
             .catch(err => {
                 console.log(err)
             })
         }
     },
-    // created() {
-    //     fetch('https://node-api-doctadevs.vercel.app/posts/{{POST_ID}}')
-    //         body = {
-    //             "autor": "USERNAME"
-    //             }
-    //     .then(res => res.json())
-    //     .then(data => {
-
-    //     })
-    //     .catch(err => {
-    //         console.log(err)
-    //     })
-    // },
 }
 </script>
 
