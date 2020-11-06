@@ -1,10 +1,16 @@
 <template>
-    <div class="login"></div>
+    <div class="login">
+        <formulario-login></formulario-login>
+    </div>
 </template>
 
 <script>
+import FormularioLogin from '../components/FormularioLogin'
 export default {
-    name: 'Login'
+    name: 'Login',
+    components: {
+        FormularioLogin
+    }
 }
 </script>
 

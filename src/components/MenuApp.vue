@@ -1,22 +1,23 @@
 <template>
     <div class="menu">
-        <router-link>Home</router-link>
-        <router-link>Feed</router-link>
+        <router-link class="links" to="Login">Login</router-link>
+        <router-link class="links" to="Registro">Registro</router-link>
+        <router-link class="links" to="/">Home</router-link>
+        <router-link class="links" to="Feed">Feed</router-link>
+        <router-link class="links" to="Perfil">Perfil</router-link>
     </div>
 </template>
 
 <script>
-import Home from '@/views/Home'
-import Feed from '@/views/Feed'
 export default {
     name: 'MenuApp',
-    components: {
-        Home,
-        Feed
-    }
+
 }
 </script>
 
 <style>
-
+    .links{
+        color: #ffffff;
+        padding: 0 30px;
+    }
 </style>

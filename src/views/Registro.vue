@@ -1,10 +1,16 @@
 <template>
-    <div class="registro"></div>
+    <div class="registro">
+        <formulario-usuario></formulario-usuario>
+    </div>
 </template>
 
 <script>
+import FormularioUsuario from '../components/FormularioUsuario'
 export default {
-    name: 'Registro'
+    name: 'Registro',
+    components: {
+        FormularioUsuario
+    }
 }
 </script>
 
