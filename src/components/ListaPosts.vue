@@ -4,14 +4,16 @@
         :autor='post.autor.username'
         :fecha='post.fecha'
         :mensaje='post.mensaje'
-        :likes='post.likes.length'>
+        :likes='post.likes.length'
+        :idPost='post._id'>
+        </post>
             <!-- <ul v-for="(post, index) in posts" :key="index">
                 <li>{{post.autor.username}}</li>
                 <li>{{post.mensaje}}</li>
                 <li>{{post.likes.length}}</li>
                 <li>{{post.fecha}}</li>
+                <li>{{post._id}}</li>
             </ul> -->
-        </post>
     </div>
 </template>
 
@@ -32,7 +34,7 @@ export default {
         fetch('https://node-api-doctadevs.vercel.app/posts')
         .then(response => response.json())
         .then(data => {
-            console.log(data.body)
+            // console.log(data.body)
             this.posts = data.body;
         })
         .catch(err => console.log(err))

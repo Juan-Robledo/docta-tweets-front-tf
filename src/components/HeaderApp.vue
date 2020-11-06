@@ -11,5 +11,7 @@ export default {
 </script>
 
 <style>
-
+    .header__app{
+        color: #fcfa79
+    }
 </style>

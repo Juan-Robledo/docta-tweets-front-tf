@@ -25,5 +25,8 @@ export default {
 </script>
 
 <style>
-
+    html{
+        background-color: #444444;
+        font-family: Arial, Helvetica, sans-serif;
+    }
 </style>

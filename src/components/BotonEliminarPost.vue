@@ -49,7 +49,7 @@ export default {
 <style scoped>
     button{
         border: none;
-        background-color: #ffffff;
+        background-color: #999999ad;
         font-size: 17px;
         color: #333333;
     }
