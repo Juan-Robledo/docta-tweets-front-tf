@@ -25,7 +25,8 @@ export default {
 
 <style>
     html{
-        background-color: #444444;
+        /* background-color: #444444; */
+        background-color: #35495e;
         font-family: Arial, Helvetica, sans-serif;
     }
 </style>

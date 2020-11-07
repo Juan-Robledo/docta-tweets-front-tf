@@ -12,6 +12,7 @@ export default {
 
 <style>
     .header__app{
-        color: #fcfa79
+        /* color: #fcfa79; */
+        color: #42b883;
     }
 </style>

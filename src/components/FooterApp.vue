@@ -15,5 +15,7 @@ export default {
 </script>
 
 <style>
-
+    .footer__app{
+        color: #cccccc;
+    }
 </style>

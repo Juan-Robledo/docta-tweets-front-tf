@@ -8,11 +8,10 @@
             <p>{{mensaje}}</p>
         </div>
         <div class="post__button">
-            <boton-like :idPostUser="idPost"><span> {{likes}}</span></boton-like>
-            <boton-eliminar-post :idPostUser='idPost'></boton-eliminar-post>
-            <boton-editar-posts :idPostUser='idPost'></boton-editar-posts>
+            <boton-like :idPostUser="idPost" @postLikes="likePost"><span> {{likes}} likes</span></boton-like>
+            <boton-eliminar-post :idPostUser='idPost' @postDelete="removePost"></boton-eliminar-post>
+            <boton-editar-posts :idPostUser='idPost' @postEdit="editPost"></boton-editar-posts>
         </div>
-        <!-- <p>{{`${post.mensaje} ${post.fecha} ${post.likes}`}}</p> -->
     </div>
 </template>
 
@@ -40,6 +39,52 @@ export default {
             post: {}
         }
     },
+    methods: {
+        removePost(){
+            fetch(`https://node-api-doctadevs.vercel.app/posts/${this.idPostUser}`, {
+                method: 'DELETE',
+                body: {
+                    autor: this.autor
+                    }
+            })
+            .then(res => {
+                return res.json()
+                })
+            .then(data => {
+                console.log(data)
+            })
+            .catch(err => console.log(err))
+        },
+        likePost(){
+            fetch(`https://node-api-doctadevs.vercel.app/posts/${this.idPostUser}/like`,
+            {
+                method: 'POST'
+            })
+            .then(res => {
+                return res.json()
+            })
+            .then(data => {
+                console.log(data)
+            })
+            .catch(err => console.log(err));
+        },
+        editPost(){
+            fetch(`https://node-api-doctadevs.vercel.app/posts/${this.idPostUser}`,
+            {
+                method: 'PATCH',
+                body: {
+                    propiedad: this.mensaje,
+                    valor: "NUEVO_MENSAJE",
+                    autor: this.autor
+                    }
+            })
+            .then(res => res.json())
+            .then(data => {
+                console.log(data)
+            })
+            .catch(err => console.log(err))
+        },
+    }
 }
 </script>
 

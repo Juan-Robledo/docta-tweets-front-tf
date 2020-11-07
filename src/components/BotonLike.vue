@@ -1,36 +1,18 @@
 <template>
     <div class="boton__like">
-        <button @click="likePost"><i class="far fa-heart"></i><slot></slot></button>
+        <button @click="likePostBtn"><i class="far fa-heart"></i><slot></slot></button>
     </div>
 </template>
 
 <script>
 export default {
     name: 'BotonLike',
-    props: {
-        idPostUser: String
-    },
-    data() {
-        return {
-            like: 0,
-        }
-    },
+    // props: {
+    //     idPostUser: String
+    // },
     methods: {
-        likePost(){
-            fetch(`https://node-api-doctadevs.vercel.app/posts/${this.idPostUser}/like`,
-            {
-                method: 'POST'
-            })
-            .then(res => {
-                return res.json()
-            })
-            .then(data => {
-                console.log(data)
-                // this.like += data;
-            })
-            .catch(err => {
-                console.log(err , 'error')
-            })
+        likePostBtn(){
+            this.$emit('postLikes')
         }
     },
 }

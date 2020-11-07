@@ -11,35 +11,40 @@ Vue.use(VueRouter)
 const routes = [
   {
     path: '/',
-    name: 'Home',
+    name: 'home',
     component: Home
   },
   {
     path: '/feed',
-    name: 'Feed',
+    name: 'feed',
     component: Feed
   },
   {
+    path: '/perfil',
+    name: 'perfil',
+    component: Perfil
+  },
+  {
     path: '/login',
-    name: 'Login',
+    name: 'login',
     component: Login
   },
   {
     path: '/registro',
-    name: 'Registro',
+    name: 'registro',
     component: Registro
   },
-  {
-    path: '/perfil',
-    name: 'Perfil',
-    component: Perfil
-  },
 ]
+
+// const routesprivate = [
+
+// ]
 
 const router = new VueRouter({
   mode: 'history',
   base: process.env.BASE_URL,
   routes
+  // routesprivate
 })
 
 export default router
