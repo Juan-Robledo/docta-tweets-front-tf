@@ -1,10 +1,10 @@
 <template>
     <div class="formulario">
         <h2>Ingresar</h2>
-        <form action="" class="formulario__login">
-            <input type="text" placeholder="Usuario" v-model="usuario">
+        <form @submit.prevent="login" class="formulario__login">
+            <input type="text" placeholder="Usuario" v-model="username">
             <input type="text" placeholder="Password" v-model="password">
-            <button @click.prevent="login">Login</button>
+            <button>Login</button>
         </form>
     </div>
 </template>
@@ -14,18 +14,32 @@ export default {
     name: 'FormularioLogin',
     data() {
         return {
-            usuario: '',
+            username: '',
             password: ''
         }
     },
     methods: {
         login(){
-            fetch('https://node-api-doctadevs.vercel.app/users/{{USERNAME}}')
+            fetch('https://node-api-doctadevs.vercel.app/login',
+            {
+                method: 'POST',
+                headers: {'Content-Type':'application/json'},
+                body: JSON.stringify(
+                    {
+                    username: this.username,
+                    password: this.password
+                }
+                )
+            }
+            )
             .then(res => {
                 return res.json()
             })
             .then(data => {
-                console.log(data)
+                // console.log(data.body)
+                let token = data.body.token;
+                // console.log(token)
+                sessionStorage.setItem('token', token)
             })
             .catch(err => {
                 console.log(err)

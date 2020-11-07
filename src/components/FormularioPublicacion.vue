@@ -20,13 +20,15 @@ export default {
         fetch('https://node-api-doctadevs.vercel.app/posts',
             {
             method: 'POST',
-            header: {
+            headers: {
                 'Content-Type': 'application/json'
             },
-            body: {
-                "autor": "USERNAME",
-                "mensaje": "MENSAJE"
+            body: JSON.stringify(
+                {
+                autor: "USERNAME",
+                mensaje: "MENSAJE"
                 }
+            )
             }
         )
         .then(res => {
