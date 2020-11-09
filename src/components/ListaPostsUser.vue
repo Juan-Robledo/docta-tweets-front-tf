@@ -28,7 +28,7 @@ export default {
         }
     },
     created() {
-        fetch('https://node-api-doctadevs.vercel.app/users/USERNAME/posts')
+        fetch(`https://node-api-doctadevs.vercel.app/users/${this.username}/posts`)
         .then(res => res.json())
         .then(data => {
             // console.log(data.body)

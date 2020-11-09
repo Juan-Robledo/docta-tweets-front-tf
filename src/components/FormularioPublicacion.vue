@@ -20,8 +20,11 @@ export default {
         fetch('https://node-api-doctadevs.vercel.app/posts',
             {
             method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
+            headers:
+            {
+                'Accept': 'application/json',
+                'Content-Type':'application/json',
+                'Authorization' : `Bearer ${sessionStorage.getItem('token')}`
             },
             body: JSON.stringify(
                 {

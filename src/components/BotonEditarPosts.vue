@@ -21,11 +21,14 @@ export default {
 <style scoped>
     button{
         border: none;
+        border-radius: 50%;
         background-color: #999999ad;
         font-size: 17px;
         color: #333333;
+        cursor: pointer;
     }
     button:hover{
-        color: #eb9358;
+        background-color: #ebb38e;
+        color: #d16924;
     }
 </style>

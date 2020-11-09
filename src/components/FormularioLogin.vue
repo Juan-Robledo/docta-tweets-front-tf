@@ -1,10 +1,14 @@
 <template>
     <div class="formulario">
         <h2>Ingresar</h2>
-        <form @submit.prevent="login" class="formulario__login">
+        <form
+        @submit.prevent="login"
+        class="formulario__login"
+        >
             <input type="text" placeholder="Usuario" v-model="username">
             <input type="text" placeholder="Password" v-model="password">
             <button>Login</button>
+            <span>Si no estas registrado has click en <a href="./Registro">Registrarse</a></span>
         </form>
     </div>
 </template>
@@ -15,7 +19,7 @@ export default {
     data() {
         return {
             username: '',
-            password: ''
+            password: '',
         }
     },
     methods: {
@@ -36,15 +40,16 @@ export default {
                 return res.json()
             })
             .then(data => {
-                // console.log(data.body)
+                console.log(data)
                 let token = data.body.token;
-                // console.log(token)
                 sessionStorage.setItem('token', token)
             })
             .catch(err => {
                 console.log(err)
             })
-        }
+            this.username = '';
+            this.password = '';
+        },
     },
 }
 </script>
@@ -96,4 +101,5 @@ export default {
         background-color: #fcfa79;
         color: #333333;
     }
+    /* v-if="!username == ' ' ? '!usernanme' : false || !password == ' ' ? '!password' : false" */
 </style>

@@ -1,5 +1,5 @@
 <template>
-    <div class="post">
+    <div class="post" @click="selectedPost">
         <div class="post__title">
             <h3>{{autor}}</h3>
             <span>{{fecha}}</span>
@@ -8,7 +8,7 @@
             <p>{{mensaje}}</p>
         </div>
         <div class="post__button">
-            <boton-like :idPostUser="idPost" @postLikes="likePost"><span> {{likes}} likes</span></boton-like>
+            <boton-like :idPostUser="idPost" @postLikes="likePost"><span> {{ `${likes} likes`}}</span></boton-like>
             <boton-eliminar-post :idPostUser='idPost' @postDelete="removePost"></boton-eliminar-post>
             <boton-editar-posts :idPostUser='idPost' @postEdit="editPost"></boton-editar-posts>
         </div>
@@ -41,7 +41,12 @@ export default {
     },
     methods: {
         removePost(){
-            fetch(`https://node-api-doctadevs.vercel.app/posts/${this.idPostUser}`, {
+            fetch(`https://node-api-doctadevs.vercel.app/posts/${this.idPost}`, {
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type':'application/json',
+                'Authorization' : `Bearer ${sessionStorage.getItem('token')}`
+                },
                 method: 'DELETE',
                 body: {
                     autor: this.autor
@@ -56,8 +61,13 @@ export default {
             .catch(err => console.log(err))
         },
         likePost(){
-            fetch(`https://node-api-doctadevs.vercel.app/posts/${this.idPostUser}/like`,
+            fetch(`https://node-api-doctadevs.vercel.app/posts/${this.idPost}/like`,
             {
+                headers: {
+                'Accept': 'application/json',
+                'Content-Type':'application/json',
+                'Authorization' : `Bearer ${sessionStorage.getItem('token')}`
+                },
                 method: 'POST'
             })
             .then(res => {
@@ -69,8 +79,13 @@ export default {
             .catch(err => console.log(err));
         },
         editPost(){
-            fetch(`https://node-api-doctadevs.vercel.app/posts/${this.idPostUser}`,
+            fetch(`https://node-api-doctadevs.vercel.app/posts/${this.idPost}`,
             {
+                headers: {
+                'Accept': 'application/json',
+                'Content-Type':'application/json',
+                'Authorization' : `Bearer ${sessionStorage.getItem('token')}`
+                },
                 method: 'PATCH',
                 body: {
                     propiedad: this.mensaje,
@@ -84,6 +99,9 @@ export default {
             })
             .catch(err => console.log(err))
         },
+        selectedPost(){
+            console.log('./PostIndividual')
+        }
     }
 }
 </script>
@@ -102,6 +120,7 @@ export default {
         background-color: #999999ad;
         color: #fcfa79;
         text-transform: lowercase;
+        cursor: pointer;
     }
     .post__title{
         margin: 10px;

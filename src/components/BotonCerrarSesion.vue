@@ -1,12 +1,17 @@
 <template>
     <div class="boton__cerrar__seccion">
-        <button>Cerrar Secciòn</button>
+        <button @click.prevent="cerrarSeccion">Cerrar Secciòn</button>
     </div>
 </template>
 
 <script>
 export default {
-    name: 'BotonCerrarSeccion'
+    name: 'BotonCerrarSeccion',
+    methods: {
+        cerrarSeccion(){
++           sessionStorage.removeItem('token')
+        }
+    },
 }
 </script>
 
