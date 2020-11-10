@@ -1,6 +1,6 @@
 <template>
     <div class="formulario__publicacion">
-        <form class="formulario__form">
+        <form class="formulario__form" @click.prevent="publishPost">
             <h5>Tweets</h5>
             <textarea v-model="publish" placeholder="What's going on?"></textarea>
             <button>Publicar</button>
@@ -16,34 +16,36 @@ export default {
             publish: '',
         }
     },
-    created() {
-        fetch('https://node-api-doctadevs.vercel.app/posts',
-            {
-            method: 'POST',
-            headers:
-            {
-                'Accept': 'application/json',
-                'Content-Type':'application/json',
-                'Authorization' : `Bearer ${sessionStorage.getItem('token')}`
-            },
-            body: JSON.stringify(
+    methods: {
+        publishPost() {
+            fetch('https://node-api-doctadevs.vercel.app/posts',
                 {
-                autor: "USERNAME",
-                mensaje: "MENSAJE"
+                method: 'POST',
+                headers:
+                {
+                    'Accept': 'application/json',
+                    'Content-Type':'application/json',
+                    'Authorization' : `Bearer ${sessionStorage.getItem('token')}`
+                },
+                body: JSON.stringify(
+                    {
+                    autor: sessionStorage.getItem('username'),
+                    mensaje: this.publish
+                    }
+                )
                 }
             )
-            }
-        )
-        .then(res => {
-            return res.json()
-        })
-        .then(data => {
-            console.log(data)
-            // this.publish = data;
-        })
-        .catch(err => {
-            console.log(err)
-        })
+            .then(res => {
+                return res.json()
+            })
+            .then(data => {
+                console.log(data)
+            })
+            .catch(err => {
+                console.log(err)
+            })
+            this.publish = ''
+        },
     },
 }
 </script>

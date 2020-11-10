@@ -27,7 +27,7 @@ export default {
         }
     },
     created() {
-        fetch('https://node-api-doctadevs.vercel.app/posts/5fa2d4c6aeab310008589cdc')
+        fetch(`https://node-api-doctadevs.vercel.app/posts/${this.idPost}`)
         .then(res => res.json())
         .then(data => {
             console.log(data)

@@ -49,7 +49,7 @@ export default {
                 },
                 method: 'DELETE',
                 body: {
-                    autor: this.autor
+                    autor: sessionStorage.getItem('username')
                     }
             })
             .then(res => {
@@ -143,23 +143,3 @@ export default {
         display: flex;
     }
 </style>
-<!--
-        <ul v-for="(post, id) in posts" :key="id">
-            <li>{{`${post.autor} ${post.mensaje} ${post.fecha}`}}</li>
-        </ul>
-
-                postUser(){
-            fetch('https://node-api-doctadevs.vercel.app/users/{{USERNAME}}/posts')
-            .then(res => {
-                return res.json()
-            })
-            .then(data => {
-                // console.log(data)
-                this.posts = data;
-            })
-            .catch(err => {
-                console.log(err)
-            })
-        }
-
--->

@@ -27,13 +27,14 @@ export default {
                     method: 'POST',
                     headers: {'Content-Type':'application/json'},
                     body: JSON.stringify(
-                {
-                    name: this.nombre,
-                    username: this.username,
-                    password: this.password
+                        {
+                            name: this.nombre,
+                            username: this.username,
+                            password: this.password
+                        }
+                    )
                 }
-                )
-            })
+            )
             .then(res => {
                 return res.json()
             })
@@ -44,6 +45,9 @@ export default {
             .catch(err => {
                 console.log(err)
             })
+            this.nombre = '';
+            this.username = '';
+            this.password = '';
         }
     },
 }
@@ -95,5 +99,8 @@ export default {
         font-weight: 600;
         background-color: #fcfa79;
         color: #333333;
+    }
+    .formulario__usuario button:hover{
+        background-color: #f7f315;
     }
 </style>

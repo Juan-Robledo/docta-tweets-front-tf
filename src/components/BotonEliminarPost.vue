@@ -7,9 +7,6 @@
 <script>
 export default {
     name: 'BotonEliminarPost',
-    // props: {
-    //     idPostUser: String
-    // },
     methods: {
         removePostBtn(){
             this.$emit('postDelete')

@@ -1,37 +1,55 @@
 <template>
     <div class="perfil">
-        <!-- <formulario-usuario></formulario-usuario> -->
         <h2>Perfil</h2>
         <div class="perfil__texto">
             <h1><i class="far fa-user-circle"></i></h1>
-            <h3>Nombre: pepe</h3>
-            <p>Username: pepe</p>
-            <p>role: subscritor</p>
+            <h3>Nombre: {{nombre}}</h3>
+            <p>Username: {{usuario}}</p>
+            <p>role: {{rol}}</p>
         </div>
         <boton-eliminar-cuenta class="btn-delete" @userDelete="deleteUser"></boton-eliminar-cuenta>
     </div>
 </template>
 
 <script>
-// import FormularioUsuario from '../components/FormularioUsuario'
 import BotonEliminarCuenta from '../components/BotonEliminarCuenta'
 
 export default {
     name: 'Perfil',
-    props:{
-        autor: String
-    },
     components: {
-        // FormularioUsuario,
         BotonEliminarCuenta
+    },
+    data() {
+        return {
+            nombre: '',
+            usuario: '',
+            rol: ''
+        }
+    },
+    created() {
+        fetch(`https://node-api-doctadevs.vercel.app/users/${sessionStorage.getItem('username')}`,{
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type':'application/json',
+                // 'Authorization': 'Basic '+btoa('username:password'),
+                'Authorization' : `Bearer ${sessionStorage.getItem('token')}`
+            },
+        })
+        .then(res => res.json())
+        .then(data => {
+            this.nombre = data.body.name
+            this.usuario = data.body.username
+            this.rol = data.body.role
+        })
+        .catch(err => console.log(err))
     },
     methods: {
         deleteUser(){
-            fetch('https://node-api-doctadevs.vercel.app/users/{{USERNAME}}',{
+            fetch(`https://node-api-doctadevs.vercel.app/users/${sessionStorage.getItem('username')}`,{
                 headers: {
-                'Accept': 'application/json',
-                'Content-Type':'application/json',
-                'Authorization' : `Bearer ${sessionStorage.getItem('token')}`
+                    'Accept': 'application/json',
+                    'Content-Type':'application/json',
+                    'Authorization' : `Bearer ${sessionStorage.getItem('token')}`
                 },
                 method: 'DELETE',
                 body: {
@@ -46,22 +64,7 @@ export default {
             })
             .catch(err => console.log(err))
         },
-    created() {
-        fetch(`https://node-api-doctadevs.vercel.app/users/${this.autor}`,{
-            headers: {
-                'Accept': 'application/json',
-                'Content-Type':'application/json',
-                // 'Authorization': 'Basic '+btoa('username:password'),
-                'Authorization' : `Bearer ${sessionStorage.getItem('token')}`
-            },
-        })
-        .then(res => res.json())
-        .then(data => {
-            console.log(data)
-        })
-        .catch(err => console.log(err))
-        },
-    }
+    },
 }
 </script>
 
@@ -84,6 +87,7 @@ export default {
     .perfil__texto h1{
         font-size: 7rem;
         margin: 0;
+        color: #f7f315;
     }
     .perfil__texto{
         flex-basis: 90%;

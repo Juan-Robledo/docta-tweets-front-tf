@@ -8,6 +8,7 @@
             <input type="text" placeholder="Usuario" v-model="username">
             <input type="text" placeholder="Password" v-model="password">
             <button>Login</button>
+            <p>{{error}}</p>
             <span>Si no estas registrado has click en <a href="./Registro">Registrarse</a></span>
         </form>
     </div>
@@ -20,21 +21,23 @@ export default {
         return {
             username: '',
             password: '',
+            error: ''
         }
     },
     methods: {
         login(){
             fetch('https://node-api-doctadevs.vercel.app/login',
-            {
+                {
                 method: 'POST',
                 headers: {'Content-Type':'application/json'},
                 body: JSON.stringify(
-                    {
-                    username: this.username,
-                    password: this.password
+                        {
+                        username: this.username,
+                        password: this.password,
+                        },
+                        sessionStorage.setItem('username', this.username),
+                    )
                 }
-                )
-            }
             )
             .then(res => {
                 return res.json()
@@ -42,7 +45,8 @@ export default {
             .then(data => {
                 console.log(data)
                 let token = data.body.token;
-                sessionStorage.setItem('token', token)
+                sessionStorage.setItem('token', token);
+                this.error = data.message;
             })
             .catch(err => {
                 console.log(err)
@@ -100,6 +104,9 @@ export default {
         font-weight: 600;
         background-color: #fcfa79;
         color: #333333;
+    }
+    .formulario__login button:hover{
+        background-color: #f7f315;
     }
     /* v-if="!username == ' ' ? '!usernanme' : false || !password == ' ' ? '!password' : false" */
 </style>
