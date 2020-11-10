@@ -3,9 +3,9 @@
         <h2>Perfil</h2>
         <div class="perfil__texto">
             <h1><i class="far fa-user-circle"></i></h1>
-            <h3>Nombre: {{nombre}}</h3>
-            <p>Username: {{usuario}}</p>
-            <p>role: {{rol}}</p>
+            <h3>{{`Nombre: ${nombre}`}}</h3>
+            <p>{{`Usuario: ${usuario}`}}</p>
+            <p>{{`Rol: ${rol}`}}</p>
         </div>
         <boton-eliminar-cuenta class="btn-delete" @userDelete="deleteUser"></boton-eliminar-cuenta>
     </div>

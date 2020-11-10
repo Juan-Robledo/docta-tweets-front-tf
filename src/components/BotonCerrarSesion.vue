@@ -9,7 +9,8 @@ export default {
     name: 'BotonCerrarSeccion',
     methods: {
         cerrarSeccion(){
-+           sessionStorage.removeItem('token')
+            sessionStorage.removeItem('token')
+            sessionStorage.removeItem('username')
         }
     },
 }

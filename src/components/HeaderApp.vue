@@ -2,10 +2,10 @@
     <div class="header__app">
         <h1>Vue Tweets</h1>
         <div class="mode">
-            <button class="switch">
+            <!-- <button class="switch">
                 <span><i class="fas fa-sun"></i></span>
                 <span><i class="fas fa-moon"></i></span>
-            </button>
+            </button> -->
             <boton-cerrar-Seccion></boton-cerrar-Seccion>
         </div>
         <menu-app></menu-app>

@@ -32,6 +32,17 @@ export default {
         })
         .catch(err => console.log(err))
     },
+    watch: {
+        posts: function(){
+            fetch('https://node-api-doctadevs.vercel.app/posts')
+            .then(response => response.json())
+            .then(data => {
+                // console.log(data.body[]._id)
+                this.posts = data.body;
+            })
+            .catch(err => console.log(err))
+        }
+    },
 }
 </script>
 

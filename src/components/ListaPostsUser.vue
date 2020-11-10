@@ -6,6 +6,7 @@
             :likes='post.likes.length'
             >
             </post>
+            <p>{{today}}</p>
     </div>
 </template>
 
@@ -19,7 +20,8 @@ export default {
     },
     data() {
         return {
-            postUser: []
+            postUser: [],
+            today: new Date()
         }
     },
     created() {
@@ -30,7 +32,18 @@ export default {
             this.postUser = data.body;
         })
         .catch(err => console.log(err))
-    }
+    },
+    watch: {
+        postUser: function(){
+            fetch(`https://node-api-doctadevs.vercel.app/users/${sessionStorage.getItem('username')}/posts`)
+            .then(response => response.json())
+            .then(data => {
+                // console.log(data.body[]._id)
+                this.postUser = data.body;
+            })
+            .catch(err => console.log(err))
+        }
+    },
 }
 </script>
 
