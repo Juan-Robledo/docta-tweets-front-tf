@@ -1,20 +1,25 @@
 <template>
     <div class="feed">
         <formulario-publicacion></formulario-publicacion>
-        <lista-posts-user></lista-posts-user>
+        <lista-posts :URL='URL'></lista-posts>
     </div>
 </template>
 
 <script>
 import FormularioPublicacion from '@/components/FormularioPublicacion'
-import ListaPostsUser from '@/components/ListaPostsUser'
+import ListaPosts from '@/components/ListaPosts'
 
 export default {
     name: 'Feed',
     components: {
         FormularioPublicacion,
-        ListaPostsUser
-    }
+        ListaPosts
+    },
+    data() {
+        return {
+            URL: `https://node-api-doctadevs.vercel.app/users/${this.$route.params.username}/posts`
+        }
+    },
 }
 </script>
 

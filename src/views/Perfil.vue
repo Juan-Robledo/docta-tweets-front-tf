@@ -16,27 +16,32 @@ import BotonEliminarCuenta from '../components/BotonEliminarCuenta'
 
 export default {
     name: 'Perfil',
+    props: {
+        autor: String
+    },
     components: {
         BotonEliminarCuenta
     },
     data() {
         return {
+            usersURL: `https://node-api-doctadevs.vercel.app/users/${this.$route.params.username}`,
             nombre: '',
             usuario: '',
             rol: ''
         }
     },
     created() {
-        fetch(`https://node-api-doctadevs.vercel.app/users/${sessionStorage.getItem('username')}`,{
+        fetch(this.usersURL,{
             headers: {
-                'Accept': 'application/json',
-                'Content-Type':'application/json',
                 // 'Authorization': 'Basic '+btoa('username:password'),
                 'Authorization' : `Bearer ${sessionStorage.getItem('token')}`
             },
         })
         .then(res => res.json())
         .then(data => {
+            if (data.error) {
+                return console.log(data)
+            }
             this.nombre = data.body.name
             this.usuario = data.body.username
             this.rol = data.body.role
@@ -45,7 +50,7 @@ export default {
     },
     methods: {
         deleteUser(){
-            fetch(`https://node-api-doctadevs.vercel.app/users/${sessionStorage.getItem('username')}`,{
+            fetch(this.usersURL,{
                 headers: {
                     'Accept': 'application/json',
                     'Content-Type':'application/json',

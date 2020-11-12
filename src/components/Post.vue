@@ -1,12 +1,13 @@
 <template>
-    <div class="post" @click="selectedPost">
-        <div class="post__title">
-            <h3>{{autor}}</h3>
-            <span>{{fecha}}</span>
-        </div>
-        <div class="post__message">
-            <p>{{mensaje}}</p>
-        </div>
+    <div class="post">
+        <router-link class="post link" :to="{name: 'post', params: {postID: idPost}}">
+            <div class="post__title">
+                <p>{{autor}} | <span>{{fecha}}</span></p>
+            </div>
+            <div class="post__message">
+                <p>{{mensaje}}</p>
+            </div>
+        </router-link>
         <div class="post__button">
             <boton-like :idPostUser="idPost" @postLikes="likePost"><span> {{ `${likes} likes`}}</span></boton-like>
             <boton-eliminar-post :idPostUser='idPost' @postDelete="removePost"></boton-eliminar-post>
@@ -32,16 +33,17 @@ export default {
         fecha: String,
         mensaje: String,
         likes: Number,
-        idPost: String
+        idPost: String,
     },
     data() {
         return {
-            post: {}
+            post: {},
+            postsURL: 'https://node-api-doctadevs.vercel.app/posts/'
         }
     },
     methods: {
         removePost(){
-            fetch(`https://node-api-doctadevs.vercel.app/posts/${this.idPost}`, {
+            fetch(`${this.postsURL}${this.idPost}`, {
             headers: {
                 'Accept': 'application/json',
                 'Content-Type':'application/json',
@@ -49,7 +51,7 @@ export default {
                 },
                 method: 'DELETE',
                 body: {
-                    autor: sessionStorage.getItem('username')
+                    autor: this.autor
                     }
             })
             .then(res => {
@@ -61,7 +63,7 @@ export default {
             .catch(err => console.log(err))
         },
         likePost(){
-            fetch(`https://node-api-doctadevs.vercel.app/posts/${this.idPost}/like`,
+            fetch(`${this.postsURL}${this.idPost}/like`,
             {
                 headers: {
                 'Accept': 'application/json',
@@ -79,12 +81,12 @@ export default {
             .catch(err => console.log(err));
         },
         editPost(){
-            fetch(`https://node-api-doctadevs.vercel.app/posts/${this.idPost}`,
+            fetch(`${this.postsURL}${this.idPost}`,
             {
                 headers: {
-                'Accept': 'application/json',
-                'Content-Type':'application/json',
-                'Authorization' : `Bearer ${sessionStorage.getItem('token')}`
+                    'Accept': 'application/json',
+                    'Content-Type':'application/json',
+                    'Authorization' : `Bearer ${sessionStorage.getItem('token')}`
                 },
                 method: 'PATCH',
                 body: {
@@ -99,9 +101,6 @@ export default {
             })
             .catch(err => console.log(err))
         },
-        selectedPost(){
-            console.log('./PostIndividual')
-        }
     }
 }
 </script>
@@ -110,17 +109,22 @@ export default {
     .post{
         width: 600px;
         margin: 10px auto;
-        display: flex;
-        flex-flow: row wrap;
-        justify-content: center;
-        align-items: center;
         min-height: 10vh;
         border: 1px solid #cccccc;
         border-radius: 15px;
         background-color: #999999ad;
+        cursor: pointer;
+    }
+    .link{
         color: #fcfa79;
         text-transform: lowercase;
-        cursor: pointer;
+        text-decoration: none;
+        display: flex;
+        flex-flow: row wrap;
+        justify-content: center;
+        align-items: center;
+        background-color: #99999900;
+        border: none;
     }
     .post__title{
         margin: 10px;
@@ -128,9 +132,9 @@ export default {
         display: flex;
         align-items: baseline;
     }
-    .post__title h3, .post__title span{
+    /* .post__title h3, .post__title span{
         width: 49%;
-    }
+    } */
     .post__title h3{
         margin: 0;
         padding-left: 15px;

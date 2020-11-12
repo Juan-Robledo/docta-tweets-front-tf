@@ -11,7 +11,7 @@
 </template>
 
 <script>
-import Post from './Post'
+import Post from '../components/Post'
 
 export default {
     name: 'PostInvividual',
@@ -23,11 +23,12 @@ export default {
     },
     data() {
         return {
-            posts: []
+            posts: [],
+            postsURL: 'https://node-api-doctadevs.vercel.app/posts/'
         }
     },
     created() {
-        fetch(`https://node-api-doctadevs.vercel.app/posts/${this.idPost}`)
+        fetch(`${this.postsURL}${this.$route.params.postID}`)
         .then(res => res.json())
         .then(data => {
             console.log(data)

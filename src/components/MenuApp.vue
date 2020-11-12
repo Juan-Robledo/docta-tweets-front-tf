@@ -1,11 +1,11 @@
 <template>
     <div class="menu">
         <!-- <div class="menu__publico"> -->
-            <router-link class="links" to="/">Login</router-link>
+            <router-link class="links" to="Login">Login</router-link>
             <router-link class="links" to="Registro">Registro</router-link>
         <!-- </div> -->
         <!-- <div class="menu__privado"> -->
-            <router-link class="links" to="Home">Home</router-link>
+            <router-link class="links" to="/">Home</router-link>
             <router-link class="links" to="Feed">Feed</router-link>
             <router-link class="links" to="Perfil">Perfil</router-link>
         <!-- </div> -->
@@ -19,7 +19,7 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
     .menu{
         text-align: center;
     }

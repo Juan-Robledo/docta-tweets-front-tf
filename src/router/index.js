@@ -5,41 +5,53 @@ import Feed from '../views/Feed.vue'
 import Registro from '../views/Registro.vue'
 import Perfil from '../views/Perfil.vue'
 import Login from '../views/Login.vue'
-import PostIndividual from '../components/PostIndividual.vue'
+import PostIndividual from '../views/PostIndividual.vue'
 
 Vue.use(VueRouter)
 
 const routes = [
   {
     path: '/',
-    name: 'login',
-    component: Login
-  },
-  {
-    path: '/home',
     name: 'home',
-    component: Home
+    component: Home,
+    meta: {logueado: true}
   },
   {
-    path: '/feed',
+    path: '/login',
+    name: 'login',
+    component: Login,
+    meta: {logueado: false}
+  },
+  {
+    path: '/feed/:username',
     name: 'feed',
-    component: Feed
+    component: Feed,
+    meta: {logueado: true}
   },
   {
     path: '/perfil',
     name: 'perfil',
-    component: Perfil
+    component: Perfil,
+    meta: {logueado: true}
   },
   {
     path: '/registro',
     name: 'registro',
-    component: Registro
+    component: Registro,
+    meta: {logueado: false}
   },
   {
-    path: '/postindividual',
-    name: 'postindividual',
-    component: PostIndividual
+    path: '/post/:postID',
+    name: 'post',
+    component: PostIndividual,
+    meta: {logueado: true}
   },
+  // {
+  //   path: '*',
+  //   name: '404',
+  //   component: Home,
+  //   meta: {logueado: true}
+  // },
 ]
 
 

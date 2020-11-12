@@ -6,9 +6,9 @@
         class="formulario__login"
         >
             <input type="text" placeholder="Usuario" v-model="username">
-            <input type="text" placeholder="Password" v-model="password">
+            <input type="password" placeholder="Password" v-model="password">
             <button>Login</button>
-            <p>{{error}}</p>
+            <p>{{errores}}</p>
             <span>Si no estas registrado has click en <a href="./Registro">Registrarse</a></span>
         </form>
     </div>
@@ -19,14 +19,15 @@ export default {
     name: 'FormularioLogin',
     data() {
         return {
+            loginURL: 'https://node-api-doctadevs.vercel.app/login',
             username: '',
             password: '',
-            error: ''
+            errores: ''
         }
     },
     methods: {
         login(){
-            fetch('https://node-api-doctadevs.vercel.app/login',
+            fetch(this.loginURL,
                 {
                 method: 'POST',
                 headers: {'Content-Type':'application/json'},
@@ -35,7 +36,6 @@ export default {
                         username: this.username,
                         password: this.password,
                         },
-                        sessionStorage.setItem('username', this.username),
                     )
                 }
             )
@@ -43,16 +43,19 @@ export default {
                 return res.json()
             })
             .then(data => {
-                console.log(data)
+                if(data.error){
+                this.errores = data.message;
+                return
+                }
                 let token = data.body.token;
                 sessionStorage.setItem('token', token);
-                this.error = data.message;
+                this.username = '';
+                this.password = '';
+                this.$router.push({name: 'home'});
             })
             .catch(err => {
                 console.log(err)
             })
-            this.username = '';
-            this.password = '';
         },
     },
 }

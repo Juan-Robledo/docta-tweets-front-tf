@@ -10,7 +10,7 @@ export default {
     methods: {
         cerrarSeccion(){
             sessionStorage.removeItem('token')
-            sessionStorage.removeItem('username')
+            this.$router.push({name: 'login'})
         }
     },
 }

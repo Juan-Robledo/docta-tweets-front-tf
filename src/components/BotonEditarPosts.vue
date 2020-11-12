@@ -7,9 +7,6 @@
 <script>
 export default {
     name: 'BotonEditarPosts',
-    // props: {
-    //     idPostUser: String
-    // },
     methods: {
         editPostBtn(){
             this.$emit('postEdit')

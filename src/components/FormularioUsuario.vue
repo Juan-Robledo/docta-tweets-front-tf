@@ -4,7 +4,7 @@
         <form @submit.prevent="addUser" class="formulario__usuario">
             <input type="text" placeholder="Nombre" v-model="nombre">
             <input type="text" placeholder="Username" v-model="username">
-            <input type="text" placeholder="Password" v-model="password">
+            <input type="password" placeholder="Password" v-model="password">
             <button>Registrarse</button>
         </form>
     </div>
@@ -40,14 +40,13 @@ export default {
             })
             .then(data => {
                 console.log(data)
-
+                this.nombre = '';
+                this.username = '';
+                this.password = '';
             })
             .catch(err => {
                 console.log(err)
             })
-            this.nombre = '';
-            this.username = '';
-            this.password = '';
         }
     },
 }

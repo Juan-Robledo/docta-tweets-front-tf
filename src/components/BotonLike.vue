@@ -7,9 +7,6 @@
 <script>
 export default {
     name: 'BotonLike',
-    // props: {
-    //     idPostUser: String
-    // },
     methods: {
         likePostBtn(){
             this.$emit('postLikes')
