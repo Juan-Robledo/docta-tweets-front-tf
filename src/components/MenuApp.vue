@@ -26,7 +26,8 @@ export default {
         text-align: center;
     }
     .links{
-        color: #ffffff;
+        /* color: #ffffff; */
+        color: #35495e;
         padding: 0 30px;
         text-decoration: none;
         font-size: 1.2rem;
