@@ -7,7 +7,7 @@
             <p>{{`Usuario: ${usuario}`}}</p>
             <p>{{`Rol: ${rol}`}}</p>
         </div>
-        <boton-eliminar-cuenta class="btn-delete" @userDelete="deleteUser"></boton-eliminar-cuenta>
+        <boton-eliminar-cuenta class="btn-delete" @userDelete="deleteUser"/>
     </div>
 </template>
 
@@ -16,24 +16,22 @@ import BotonEliminarCuenta from '../components/BotonEliminarCuenta'
 
 export default {
     name: 'Perfil',
-    props: {
-        autor: String
-    },
     components: {
         BotonEliminarCuenta
     },
+    props: {
+        masterURL: String
+    },
     data() {
         return {
-            usersURL: `https://node-api-doctadevs.vercel.app/users/${this.$route.params.username}`,
             nombre: '',
             usuario: '',
             rol: ''
         }
     },
     created() {
-        fetch(this.usersURL,{
+        fetch(`${this.masterURL}/users/${sessionStorage.getItem('username')}`,{
             headers: {
-                // 'Authorization': 'Basic '+btoa('username:password'),
                 'Authorization' : `Bearer ${sessionStorage.getItem('token')}`
             },
         })
@@ -50,15 +48,13 @@ export default {
     },
     methods: {
         deleteUser(){
-            fetch(this.usersURL,{
+            fetch(`${this.masterURL}/users/${sessionStorage.getItem('username')}`,{
                 headers: {
-                    'Accept': 'application/json',
-                    'Content-Type':'application/json',
                     'Authorization' : `Bearer ${sessionStorage.getItem('token')}`
                 },
                 method: 'DELETE',
                 body: {
-                    autor: this.autor
+                    autor: sessionStorage.getItem('username')
                     }
             })
             .then(res => {
@@ -66,6 +62,7 @@ export default {
                 })
             .then(data => {
                 console.log(data)
+                this.$router.push({name: 'login'})
             })
             .catch(err => console.log(err))
         },

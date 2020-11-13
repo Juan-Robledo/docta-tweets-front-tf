@@ -1,8 +1,8 @@
 <template>
     <div class="container">
-        <header-app></header-app>
-        <router-view></router-view>
-        <footer-app></footer-app>
+        <header-app />
+        <router-view :masterURL='masterURL'/>
+        <footer-app />
     </div>
 </template>
 
@@ -15,7 +15,12 @@ export default {
     components: {
         HeaderApp,
         FooterApp,
-    }
+    },
+    data() {
+        return {
+            masterURL: 'https://node-api-doctadevs.vercel.app'
+        }
+    },
 }
 </script>
 

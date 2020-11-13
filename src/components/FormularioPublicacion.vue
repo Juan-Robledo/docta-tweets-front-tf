@@ -11,6 +11,9 @@
 <script>
 export default {
     name: 'FormularioPublicacion',
+    props: {
+        URL: String
+    },
     data() {
         return {
             publish: '',
@@ -18,7 +21,7 @@ export default {
     },
     methods: {
         publishPost() {
-            fetch('https://node-api-doctadevs.vercel.app/posts',
+            fetch(`${this.URL}`,
                 {
                 method: 'POST',
                 headers:

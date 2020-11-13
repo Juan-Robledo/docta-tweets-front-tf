@@ -1,13 +1,13 @@
 <template>
     <div class="menu">
         <!-- <div class="menu__publico"> -->
-            <router-link class="links" to="Login">Login</router-link>
-            <router-link class="links" to="Registro">Registro</router-link>
+            <router-link class="links" :to="{path: '/login'}">Login</router-link>
+            <router-link class="links" :to="{path: '/registro'}">Registro</router-link>
         <!-- </div> -->
         <!-- <div class="menu__privado"> -->
-            <router-link class="links" to="/">Home</router-link>
-            <router-link class="links" to="Feed">Feed</router-link>
-            <router-link class="links" to="Perfil">Perfil</router-link>
+            <router-link class="links" :to="{path: '/'}">Home</router-link>
+            <router-link class="links" :to="{path: '/feed', name: 'feed', params: {username: autor}}">Feed</router-link>
+            <router-link class="links" :to="{path: '/perfil'}">Perfil</router-link>
         <!-- </div> -->
     </div>
 </template>
@@ -15,7 +15,9 @@
 <script>
 export default {
     name: 'MenuApp',
-
+    props: {
+        autor: String
+    }
 }
 </script>
 

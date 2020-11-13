@@ -1,7 +1,7 @@
 <template>
     <div class="feed">
-        <formulario-publicacion></formulario-publicacion>
-        <lista-posts :URL='URL'></lista-posts>
+        <formulario-publicacion />
+        <lista-posts :URL='URL'/>
     </div>
 </template>
 
@@ -11,13 +11,16 @@ import ListaPosts from '@/components/ListaPosts'
 
 export default {
     name: 'Feed',
+    props: {
+        masterURL: String
+    },
     components: {
         FormularioPublicacion,
         ListaPosts
     },
     data() {
         return {
-            URL: `https://node-api-doctadevs.vercel.app/users/${this.$route.params.username}/posts`
+            URL: `${this.masterURL}/users/${this.$route.params.username}/posts`
         }
     },
 }

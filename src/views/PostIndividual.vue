@@ -1,40 +1,24 @@
 <template>
     <div class="post__individual">
-        <post v-for="(post, index) in posts" :key="index"
-        :autor='post.autor.username'
-        :fecha='post.fecha'
-        :mensaje='post.mensaje'
-        :likes='post.likes.length'
-        :idPost='post._id'>
-        </post>
+        <lista-posts :URL='URL'/>
     </div>
 </template>
 
 <script>
-import Post from '../components/Post'
+import ListaPosts from '../components/ListaPosts.vue'
 
 export default {
     name: 'PostInvividual',
     components:{
-        Post
+        ListaPosts
     },
     props: {
-        idPost: String
+        masterURL: String
     },
     data() {
         return {
-            posts: [],
-            postsURL: 'https://node-api-doctadevs.vercel.app/posts/'
+            URL: `${this.masterURL}/posts/${this.$route.params.postID}`
         }
-    },
-    created() {
-        fetch(`${this.postsURL}${this.$route.params.postID}`)
-        .then(res => res.json())
-        .then(data => {
-            console.log(data)
-            this.posts = data.body;
-            })
-        .catch(err => console.log(err))
     },
 }
 </script>

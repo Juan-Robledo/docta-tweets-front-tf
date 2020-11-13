@@ -1,6 +1,6 @@
 <template>
     <div class="login">
-        <formulario-login></formulario-login>
+        <formulario-login :loginURL='loginURL'/>
     </div>
 </template>
 
@@ -8,9 +8,17 @@
 import FormularioLogin from '../components/FormularioLogin'
 export default {
     name: 'Login',
+    props: {
+        masterURL: String
+    },
     components: {
         FormularioLogin
-    }
+    },
+    data() {
+        return {
+            loginURL: `${this.masterURL}/login`
+        }
+    },
 }
 </script>
 

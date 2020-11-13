@@ -2,16 +2,17 @@
     <div class="post">
         <router-link class="post link" :to="{name: 'post', params: {postID: idPost}}">
             <div class="post__title">
-                <p>{{autor}} | <span>{{fecha}}</span></p>
+                <h3>{{autor}}</h3>
+                <span>{{fecha}}</span>
             </div>
             <div class="post__message">
                 <p>{{mensaje}}</p>
             </div>
         </router-link>
         <div class="post__button">
-            <boton-like :idPostUser="idPost" @postLikes="likePost"><span> {{ `${likes} likes`}}</span></boton-like>
-            <boton-eliminar-post :idPostUser='idPost' @postDelete="removePost"></boton-eliminar-post>
-            <boton-editar-posts :idPostUser='idPost' @postEdit="editPost"></boton-editar-posts>
+            <boton-like @postLikes="likePost"><span> {{ `${likes} likes`}}</span></boton-like>
+            <boton-eliminar-post @postDelete="removePost"/>
+            <!-- <boton-editar-posts :idPostUser='idPost' @postEdit="editPost"/> -->
         </div>
     </div>
 </template>
@@ -19,14 +20,14 @@
 <script>
 import BotonEliminarPost from './BotonEliminarPost'
 import BotonLike from './BotonLike'
-import BotonEditarPosts from './BotonEditarPosts'
+// import BotonEditarPosts from './BotonEditarPosts'
 
 export default {
     name: 'Post',
     components: {
         BotonEliminarPost,
         BotonLike,
-        BotonEditarPosts
+        // BotonEditarPosts
     },
     props: {
         autor: String,
@@ -45,13 +46,11 @@ export default {
         removePost(){
             fetch(`${this.postsURL}${this.idPost}`, {
             headers: {
-                'Accept': 'application/json',
-                'Content-Type':'application/json',
                 'Authorization' : `Bearer ${sessionStorage.getItem('token')}`
                 },
                 method: 'DELETE',
                 body: {
-                    autor: this.autor
+                    autor: sessionStorage.getItem('username')
                     }
             })
             .then(res => {
@@ -59,6 +58,7 @@ export default {
                 })
             .then(data => {
                 console.log(data)
+                // data.splice(1, 1)
             })
             .catch(err => console.log(err))
         },
@@ -66,7 +66,6 @@ export default {
             fetch(`${this.postsURL}${this.idPost}/like`,
             {
                 headers: {
-                'Accept': 'application/json',
                 'Content-Type':'application/json',
                 'Authorization' : `Bearer ${sessionStorage.getItem('token')}`
                 },
@@ -80,27 +79,26 @@ export default {
             })
             .catch(err => console.log(err));
         },
-        editPost(){
-            fetch(`${this.postsURL}${this.idPost}`,
-            {
-                headers: {
-                    'Accept': 'application/json',
-                    'Content-Type':'application/json',
-                    'Authorization' : `Bearer ${sessionStorage.getItem('token')}`
-                },
-                method: 'PATCH',
-                body: {
-                    propiedad: this.mensaje,
-                    valor: "NUEVO_MENSAJE",
-                    autor: this.autor
-                    }
-            })
-            .then(res => res.json())
-            .then(data => {
-                console.log(data)
-            })
-            .catch(err => console.log(err))
-        },
+        // editPost(){
+        //     fetch(`${this.postsURL}${this.idPost}`,
+        //     {
+        //         headers: {
+        //             'Content-Type':'application/json',
+        //             'Authorization' : `Bearer ${sessionStorage.getItem('token')}`
+        //         },
+        //         method: 'PATCH',
+        //         body: {
+        //             propiedad: this.mensaje,
+        //             valor: "NUEVO_MENSAJE",
+        //             autor: sessionStorage.getItem('username')
+        //             }
+        //     })
+        //     .then(res => res.json())
+        //     .then(data => {
+        //         console.log(data)
+        //     })
+        //     .catch(err => console.log(err))
+        // },
     }
 }
 </script>
@@ -132,9 +130,9 @@ export default {
         display: flex;
         align-items: baseline;
     }
-    /* .post__title h3, .post__title span{
+    .post__title h3, .post__title span{
         width: 49%;
-    } */
+    }
     .post__title h3{
         margin: 0;
         padding-left: 15px;

@@ -1,6 +1,6 @@
 <template>
     <div class="registro">
-        <formulario-usuario></formulario-usuario>
+        <formulario-usuario :userURL='userURL'/>
     </div>
 </template>
 
@@ -8,9 +8,17 @@
 import FormularioUsuario from '../components/FormularioUsuario'
 export default {
     name: 'Registro',
+    props: {
+        masterURL: String
+    },
     components: {
         FormularioUsuario
-    }
+    },
+    data() {
+        return {
+            userURL: `${this.masterURL}/users`
+        }
+    },
 }
 </script>
 

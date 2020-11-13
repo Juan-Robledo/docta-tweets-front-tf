@@ -13,6 +13,9 @@
 <script>
 export default {
     name: 'FormularioUsuario',
+    props: {
+        userURL: String
+    },
     data() {
         return {
             nombre: '',
@@ -22,7 +25,7 @@ export default {
     },
     methods: {
         addUser(){
-            fetch('https://node-api-doctadevs.vercel.app/users',
+            fetch(this.userURL,
                 {
                     method: 'POST',
                     headers: {'Content-Type':'application/json'},

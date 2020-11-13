@@ -1,10 +1,7 @@
 <template>
     <div class="formulario">
         <h2>Ingresar</h2>
-        <form
-        @submit.prevent="login"
-        class="formulario__login"
-        >
+        <form @submit.prevent="login" class="formulario__login">
             <input type="text" placeholder="Usuario" v-model="username">
             <input type="password" placeholder="Password" v-model="password">
             <button>Login</button>
@@ -17,9 +14,11 @@
 <script>
 export default {
     name: 'FormularioLogin',
+    props: {
+        loginURL: String
+    },
     data() {
         return {
-            loginURL: 'https://node-api-doctadevs.vercel.app/login',
             username: '',
             password: '',
             errores: ''
@@ -49,6 +48,7 @@ export default {
                 }
                 let token = data.body.token;
                 sessionStorage.setItem('token', token);
+                sessionStorage.setItem('username', this.username)
                 this.username = '';
                 this.password = '';
                 this.$router.push({name: 'home'});
