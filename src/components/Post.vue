@@ -11,7 +11,7 @@
         </router-link>
         <div class="post__button">
             <boton-like @giveLike="likePost" @click="likePost"><span> {{ `${likes} likes`}}</span></boton-like>
-            <boton-eliminar-post @postDelete="removePost" v-if="username == autor"/>
+            <boton-eliminar-post @postDelete="removePost" v-if="username == autor" @click="removePost"/>
         </div>
     </div>
 </template>
@@ -56,6 +56,7 @@ export default {
                 return res.json()
                 })
             .then(data => {
+                this.$emit('pullPost')
                 console.log(data)
             })
             .catch(err => console.log(err))

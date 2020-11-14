@@ -3,7 +3,7 @@
         <form class="formulario__form" @submit.prevent="publishPost">
             <h5>Tweets</h5>
             <textarea v-model="publish" placeholder="What's going on?"></textarea>
-            <button>Publicar</button>
+            <button @click="publishPost">Publicar</button>
         </form>
     </div>
 </template>
@@ -21,27 +21,23 @@ export default {
     },
     methods: {
         publishPost() {
-            fetch(`${this.URL}`,
-                {
+            fetch(`${this.URL}`,{
                 method: 'POST',
-                headers:
-                {
+                headers:{
                     'Accept': 'application/json',
                     'Content-Type':'application/json',
                     'Authorization' : `Bearer ${sessionStorage.getItem('token')}`
-                },
-                body: JSON.stringify(
-                    {
+                    },
+                body: JSON.stringify({
                     autor: sessionStorage.getItem('username'),
                     mensaje: this.publish
-                    }
-                )
-                }
-            )
+                    })
+                })
             .then(res => {
                 return res.json()
             })
             .then(data => {
+                this.$emit('printPost')
                 console.log(data)
             })
             .catch(err => {
