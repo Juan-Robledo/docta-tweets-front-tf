@@ -3,7 +3,7 @@
         <form class="formulario__form" @submit.prevent="publishPost">
             <h5>Tweets</h5>
             <textarea v-model="publish" placeholder="What's going on?"></textarea>
-            <button @click="publishPost">Publicar</button>
+            <button>Publicar</button>
         </form>
     </div>
 </template>
@@ -37,7 +37,6 @@ export default {
                 return res.json()
             })
             .then(data => {
-                this.$emit('printPost')
                 console.log(data)
             })
             .catch(err => {

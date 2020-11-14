@@ -8,13 +8,10 @@
         :idPost='post._id'
         @giftLike='getPosts'
         @pullPost='getPosts'/>
-        <formulario-publicacion
-        @printPost='getPosts'/>
     </div>
 </template>
 
 <script>
-import FormularioPublicacion from './FormularioPublicacion.vue'
 import Post from './Post'
 
 export default {
@@ -24,7 +21,6 @@ export default {
     },
     components: {
         Post,
-        FormularioPublicacion,
     },
     data() {
         return {
