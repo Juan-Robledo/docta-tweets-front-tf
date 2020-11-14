@@ -6,7 +6,7 @@
         <!-- </div> -->
         <!-- <div class="menu__privado"> -->
             <router-link class="links" :to="{path: '/'}">Home</router-link>
-            <router-link class="links" :to="{path: '/feed', name: 'feed', params: {username: autor}}">Feed</router-link>
+            <router-link class="links" :to="{path: '/feed', name: 'feed', params: {username: username}}">Feed</router-link>
             <router-link class="links" :to="{path: '/perfil'}">Perfil</router-link>
         <!-- </div> -->
     </div>
@@ -15,9 +15,11 @@
 <script>
 export default {
     name: 'MenuApp',
-    props: {
-        autor: String
-    }
+    data() {
+        return {
+            username: sessionStorage.getItem('username')
+        }
+    },
 }
 </script>
 
@@ -34,5 +36,13 @@ export default {
     }
     .links:hover{
         background-color: #5c738b;
+    }
+    @media screen and (max-width: 700px) {
+        .menu{
+            background-color: aquamarine;
+            height: 50px;
+            display: flex;
+            flex-flow: column;
+        }
     }
 </style>

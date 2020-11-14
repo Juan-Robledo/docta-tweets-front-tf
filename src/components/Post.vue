@@ -10,9 +10,8 @@
             </div>
         </router-link>
         <div class="post__button">
-            <boton-like @postLikes="likePost"><span> {{ `${likes} likes`}}</span></boton-like>
-            <boton-eliminar-post @postDelete="removePost"/>
-            <!-- <boton-editar-posts :idPostUser='idPost' @postEdit="editPost"/> -->
+            <boton-like @giveLike="likePost" @click="likePost"><span> {{ `${likes} likes`}}</span></boton-like>
+            <boton-eliminar-post @postDelete="removePost" v-if="username == autor"/>
         </div>
     </div>
 </template>
@@ -20,14 +19,12 @@
 <script>
 import BotonEliminarPost from './BotonEliminarPost'
 import BotonLike from './BotonLike'
-// import BotonEditarPosts from './BotonEditarPosts'
 
 export default {
     name: 'Post',
     components: {
         BotonEliminarPost,
         BotonLike,
-        // BotonEditarPosts
     },
     props: {
         autor: String,
@@ -39,26 +36,27 @@ export default {
     data() {
         return {
             post: {},
+            username: sessionStorage.getItem('username'),
             postsURL: 'https://node-api-doctadevs.vercel.app/posts/'
         }
     },
     methods: {
         removePost(){
-            fetch(`${this.postsURL}${this.idPost}`, {
-            headers: {
-                'Authorization' : `Bearer ${sessionStorage.getItem('token')}`
+            fetch(`${this.postsURL}${this.idPost}`,{
+                headers: {
+                    'Content-Type':'application/json',
+                    'Authorization' : `Bearer ${sessionStorage.getItem('token')}`
                 },
                 method: 'DELETE',
-                body: {
+                body: JSON.stringify({
                     autor: sessionStorage.getItem('username')
-                    }
+                })
             })
             .then(res => {
                 return res.json()
                 })
             .then(data => {
                 console.log(data)
-                // data.splice(1, 1)
             })
             .catch(err => console.log(err))
         },
@@ -75,31 +73,12 @@ export default {
                 return res.json()
             })
             .then(data => {
+                this.$emit('giftLike')
                 console.log(data)
             })
             .catch(err => console.log(err));
         },
-        // editPost(){
-        //     fetch(`${this.postsURL}${this.idPost}`,
-        //     {
-        //         headers: {
-        //             'Content-Type':'application/json',
-        //             'Authorization' : `Bearer ${sessionStorage.getItem('token')}`
-        //         },
-        //         method: 'PATCH',
-        //         body: {
-        //             propiedad: this.mensaje,
-        //             valor: "NUEVO_MENSAJE",
-        //             autor: sessionStorage.getItem('username')
-        //             }
-        //     })
-        //     .then(res => res.json())
-        //     .then(data => {
-        //         console.log(data)
-        //     })
-        //     .catch(err => console.log(err))
-        // },
-    }
+    },
 }
 </script>
 
@@ -107,7 +86,6 @@ export default {
     .post{
         width: 600px;
         margin: 10px auto;
-        min-height: 10vh;
         border: 1px solid #cccccc;
         border-radius: 15px;
         background-color: #999999ad;
@@ -143,5 +121,10 @@ export default {
     }
     .post__button{
         display: flex;
+    }
+    @media screen and (max-width: 700px) {
+        .post{
+            margin: 10px;
+        }
     }
 </style>

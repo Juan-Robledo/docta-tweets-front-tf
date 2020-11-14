@@ -1,14 +1,18 @@
 <template>
     <div class="header__app">
-        <h1>Vue Tweets</h1>
+        <div class="title">
+            <h1>Vue Tweets</h1>
+            <boton-cerrar-Seccion />
+        </div>
         <div class="mode">
             <!-- <button class="switch">
                 <span><i class="fas fa-sun"></i></span>
                 <span><i class="fas fa-moon"></i></span>
             </button> -->
-            <boton-cerrar-Seccion></boton-cerrar-Seccion>
         </div>
-        <menu-app></menu-app>
+        <div class="menu">
+            <menu-app />
+        </div>
     </div>
 </template>
 
@@ -29,8 +33,36 @@ export default {
     .header__app{
         /* color: #fcfa79; */
         color: #42b883;
+        width: 1120px;
         height: 110px;
+        margin: 0 auto;
         margin-bottom: 20px;
+        display: flex;
+        flex-flow: row wrap;
+    }
+    .header__app .title{
+        flex-basis: 100%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0 30px;
+    }
+    .header__app .menu{
+        margin: 0 auto;
+    }
+    @media screen and (max-width: 770px) {
+        .header__app .title{
+            height: 100px;
+            flex-flow: column wrap;
+            padding: 0 30px;
+        }
+    }
+    @media screen and (max-width: 430px) {
+        .header__app .title{
+            height: 200px;
+            flex-flow: column wrap;
+            padding: 0 30px;
+        }
     }
     /* .switch{
         background-color: #343d5b;

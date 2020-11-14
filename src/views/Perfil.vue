@@ -17,7 +17,7 @@ import BotonEliminarCuenta from '../components/BotonEliminarCuenta'
 export default {
     name: 'Perfil',
     components: {
-        BotonEliminarCuenta
+        BotonEliminarCuenta,
     },
     props: {
         masterURL: String
@@ -62,6 +62,8 @@ export default {
                 })
             .then(data => {
                 console.log(data)
+                sessionStorage.removeItem('token')
+                sessionStorage.removeItem('username')
                 this.$router.push({name: 'login'})
             })
             .catch(err => console.log(err))
@@ -78,7 +80,6 @@ export default {
         flex-flow: row wrap;
         justify-content: center;
         align-items: center;
-        min-height: 60vh;
         border: 1px solid #cccccc;
         border-radius: 15px;
         background-color: #999999ad;
@@ -106,5 +107,12 @@ export default {
     .btn-delete{
         flex-basis: 100%;
         text-align: center;
+    }
+    @media screen and (max-width: 700px) {
+        .perfil{
+            width: 80%;
+            height: 410px;
+            margin: 15px auto;
+        }
     }
 </style>

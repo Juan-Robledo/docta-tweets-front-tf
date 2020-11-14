@@ -23,5 +23,8 @@ export default {
 </script>
 
 <style>
-
+    .login{
+        display: flex;
+        margin: 0 auto;
+    }
 </style>

@@ -62,8 +62,7 @@ export default {
         display: flex;
         flex-flow: row wrap;
         justify-content: center;
-        align-items: center;
-        min-height: 60vh;
+        align-items: center;;
         border: 1px solid #cccccc;
         border-radius: 15px;
         background-color: #999999ad;
@@ -78,7 +77,6 @@ export default {
         flex-direction: column;
         justify-content: center;
         align-items: center;
-        min-height: 50vh;
         border: 1px solid #cccccc;
         border-radius: 15px;
         background-color: #999999ad;
@@ -104,5 +102,15 @@ export default {
     }
     .formulario__usuario button:hover{
         background-color: #f7f315;
+    }
+    @media screen and (max-width: 700px) {
+        .formulario{
+            width: 80%;
+            height: 350px;
+            margin: 15px auto;
+        }
+        .formulario__usuario{
+            margin: 0 auto;
+        }
     }
 </style>

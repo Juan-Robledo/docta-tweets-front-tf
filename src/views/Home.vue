@@ -27,5 +27,21 @@ export default {
 </script>
 
 <style>
-
+    .home{
+        width: 1120px;
+        height: auto;
+        display: flex;
+        flex-flow: row wrap;
+        margin: 0 auto;
+    }
+    @media screen and (max-width: 770px) {
+        .home{
+            width: 80%;
+        }
+    }
+    @media screen and (max-width: 320px) {
+        .home{
+            width: 50%;
+        }
+    }
 </style>

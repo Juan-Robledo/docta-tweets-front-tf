@@ -6,8 +6,7 @@
         :mensaje='post.mensaje'
         :likes='post.likes.length'
         :idPost='post._id'
-        >
-        </post>
+        @giftLike='getPosts'></post>
     </div>
 </template>
 
@@ -27,14 +26,6 @@ export default {
             posts: []
         }
     },
-    created() {
-        this.getPosts()
-    },
-    watch: {
-        posts: function(){
-            this.getPosts()
-        }
-    },
     methods: {
         getPosts(){
             fetch(this.URL)
@@ -44,25 +35,25 @@ export default {
             })
             .catch(err => console.log(err))
         },
-        // userPost(){
-        //     fetch(this.URL,{
-        //         headers: {
-        //             'Accept': 'application/json',
-        //             'Content-Type':'application/json',
-        //             'Authorization' : `Bearer ${sessionStorage.getItem('token')}`
-        //             },
-        //         })
-        //     .then(response => response.json())
-        //     .then(data => {
-        //         // console.log(data)
-        //         this.posts = data.body;
-        //     })
-        //     .catch(err => console.log(err))
-        // }
+    },
+        created() {
+        this.getPosts()
     },
 }
 </script>
 
 <style>
-
+    .lista__posts{
+        width: 1120px;
+        height: auto;
+        display: flex;
+        flex-flow: row wrap;
+        margin: 0 auto;
+    }
+    @media screen and (max-width: 700px) {
+        .post{
+            width: 80%;
+            height: 150px;
+        }
+    }
 </style>

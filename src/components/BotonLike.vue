@@ -9,7 +9,7 @@ export default {
     name: 'BotonLike',
     methods: {
         likePostBtn(){
-            this.$emit('postLikes')
+            this.$emit('giveLike')
         }
     },
 }

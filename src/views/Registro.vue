@@ -23,5 +23,8 @@ export default {
 </script>
 
 <style>
-
+    .registro{
+        display: flex;
+        margin: 0 auto;
+    }
 </style>

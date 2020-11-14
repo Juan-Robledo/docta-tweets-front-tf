@@ -24,5 +24,10 @@ export default {
 </script>
 
 <style>
-
+    .post__individual{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin: 20px auto;
+    }
 </style>

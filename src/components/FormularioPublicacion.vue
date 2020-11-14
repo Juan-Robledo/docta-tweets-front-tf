@@ -1,6 +1,6 @@
 <template>
     <div class="formulario__publicacion">
-        <form class="formulario__form" @click.prevent="publishPost">
+        <form class="formulario__form" @submit.prevent="publishPost">
             <h5>Tweets</h5>
             <textarea v-model="publish" placeholder="What's going on?"></textarea>
             <button>Publicar</button>
@@ -61,7 +61,7 @@ export default {
         flex-flow: row wrap;
         justify-content: center;
         align-items: center;
-        min-height: 10vh;
+        height: 100px;
         border: 1px solid #cccccc;
         border-radius: 15px;
         background-color: #999999ad;
@@ -86,5 +86,11 @@ export default {
         color: #333333;
         border: none;
         margin: 5px 0;
+    }
+    @media screen and (max-width: 700px) {
+        .formulario__publicacion{
+            width: 80%;
+            height: 100px;
+        }
     }
 </style>

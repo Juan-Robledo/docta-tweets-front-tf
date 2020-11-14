@@ -30,5 +30,12 @@ export default {
         /* background-color: #35495e; */
         background-color: #f1f1f1;
         font-family: Arial, Helvetica, sans-serif;
+        box-sizing: border-box;
+        margin: 0;
+    }
+    .container{
+        margin: 0;
+        display: flex;
+        flex-flow: row wrap;;
     }
 </style>
