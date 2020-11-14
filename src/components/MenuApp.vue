@@ -17,7 +17,7 @@ export default {
     name: 'MenuApp',
     data() {
         return {
-            username: sessionStorage.getItem('username')
+            username: window.sessionStorage.getItem('username')
         }
     },
 }
