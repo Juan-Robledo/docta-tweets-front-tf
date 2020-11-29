@@ -1,14 +1,10 @@
 <template>
     <div class="menu">
-        <!-- <div class="menu__publico"> -->
             <router-link class="links" :to="{path: '/login'}">Login</router-link>
             <router-link class="links" :to="{path: '/registro'}">Registro</router-link>
-        <!-- </div> -->
-        <!-- <div class="menu__privado"> -->
             <router-link class="links" :to="{path: '/'}">Home</router-link>
             <router-link class="links" :to="{path: '/feed', name: 'feed', params: {username: username}}">Feed</router-link>
             <router-link class="links" :to="{path: '/perfil'}">Perfil</router-link>
-        <!-- </div> -->
     </div>
 </template>
 
@@ -39,8 +35,6 @@ export default {
     }
     @media screen and (max-width: 700px) {
         .menu{
-            background-color: aquamarine;
-            height: 50px;
             display: flex;
             flex-flow: column;
         }

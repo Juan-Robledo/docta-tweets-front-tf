@@ -51,15 +51,12 @@ export default {
         margin: 0 auto;
     }
     @media screen and (max-width: 770px) {
-        .header__app .title{
-            height: 100px;
-            flex-flow: column wrap;
-            padding: 0 30px;
+        .header__app{
+            height: 240px;
+            margin-bottom: 0;
         }
-    }
-    @media screen and (max-width: 430px) {
         .header__app .title{
-            height: 200px;
+            height: 110px;
             flex-flow: column wrap;
             padding: 0 30px;
         }
